@@ -2,13 +2,15 @@
 # R package installation for workshop dependencies
 
 # Change library directory to ${HOME}/.library so root is not needed
-.libPaths("~/.library")
+user_lib <- "~/.library"
+.libPaths(user_lib)
 
 # Install BiocManager first, may prevent conflicting dependencies if
 # CRAN packages are installed first
-install.packages(c("BiocManager", "BiocManager"))
+install.packages("BiocManager", repos = "https://cran.csiro.au/", lib = user_lib)
 
 bioc_pkgs <- c(
+  "BiocGenerics",
   "SingleR",
   "celldex",
   "BiocGenerics",
@@ -21,7 +23,7 @@ bioc_pkgs <- c(
   "edgeR"
 )
 
-BiocManager::install(bioc_pkgs)
+BiocManager::install(bioc_pkgs, lib = user_lib, ask = FALSE, update = FALSE)
 
 # Install CRAN packges
 cran_pkgs <- c(
@@ -37,17 +39,17 @@ cran_pkgs <- c(
   "pander"
 )
 
-install.packages(cran_pkgs)
+install.packages(cran_pkgs, lib = user_lib, repos = "https://cran.csiro.au/")
 
 # Lastly github pkgs
-remotes::install_github("immunogenomics/presto@1.0.0")
+remotes::install_github("immunogenomics/presto")
 
 # Validate installation
 
 cat("========== Installation validation ==========\n")
 cat("Target library:", user_lib, "\n\n")
 
-expected_pkgs <- c("BiocManager", "BiocGenerics", bioc_pkgs, cran_pkgs)
+expected_pkgs <- c("BiocManager", bioc_pkgs, cran_pkgs, "presto")
 
 check_package <- function(pkg, lib) {
   installed <- dir.exists(file.path(lib, pkg))

@@ -2,7 +2,7 @@
 # system prep and R package installation
 set -eo pipefail
 
-R_VERSION="4.3.3"
+R_VERSION="4.3.3" # default v on bioshell
 
 echo "=========================================="
 echo " Environment setup"
@@ -23,7 +23,8 @@ sudo apt install -y -q \
   libfreetype6-dev \
   libpng-dev \
   libtiff5-dev \
-  libjpeg-dev
+  libjpeg-dev \
+  libuv1-dev
 echo "[1/4] Done."
 
 # --- Check R version ---
@@ -57,3 +58,8 @@ echo ""
 echo "=========================================="
 echo " Setup complete."
 echo "=========================================="
+
+#TODO: Set up .libPaths in .Renviron
+# echo "R_LIBS_USER=${R_LIBS_USER}" >> ~/.Renviron
+
+# TODO: move relevant folders and delete repo
