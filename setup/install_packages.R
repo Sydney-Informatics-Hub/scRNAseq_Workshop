@@ -36,7 +36,8 @@ cran_pkgs <- c(
   "clustree",
   "RColorBrewer",
   "tidyverse",
-  "pander"
+  "pander",
+  "qs2"
 )
 
 install.packages(cran_pkgs, lib = user_lib, repos = "https://cran.csiro.au/")
