@@ -37,7 +37,9 @@ cran_pkgs <- c(
   "RColorBrewer",
   "tidyverse",
   "pander",
-  "qs2"
+  "qs2",
+  "plotly",
+  "ggplotly"
 )
 
 install.packages(cran_pkgs, lib = user_lib, repos = "https://cran.csiro.au/")
